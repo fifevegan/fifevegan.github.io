@@ -16,7 +16,9 @@
   .btn { display:inline-block; background:var(--leaf); color:#fff; text-decoration:none; font-size:16px; font-weight:bold; padding:14px 32px; border-radius:16px; border:none; cursor:pointer; width:100%; font-family:inherit; }
   .btn:active { background: var(--leaf-dark); }
   .hint { margin-top:14px; font-size:13px; }
-  input { width:100%; padding:14px 16px; font-size:16px; border:1px solid #E0D5C2; border-radius:14px; margin-bottom:12px; background:#FBF7EE; font-family:inherit; }
+  input { width:100%; padding:14px 44px 14px 16px; font-size:16px; border:1px solid #E0D5C2; border-radius:14px; margin-bottom:12px; background:#FBF7EE; font-family:inherit; }
+  .pw-wrap { position:relative; }
+  .eye { position:absolute; right:10px; top:50%; transform:translateY(-60%); background:none; border:none; font-size:17px; cursor:pointer; opacity:.65; padding:6px; }
   .msg { font-size:14px; margin-bottom:14px; min-height:20px; }
   .msg.ok { color: var(--leaf-dark); }
   .msg.err { color:#A4502E; }
@@ -39,8 +41,14 @@
   <div id="reset" style="display:none">
     <h1>Choose a new password</h1>
     <p>Almost done — pick a fresh password (at least 6 characters) and you're back in.</p>
-    <input type="password" id="pw1" placeholder="New password" autocomplete="new-password">
-    <input type="password" id="pw2" placeholder="Repeat new password" autocomplete="new-password">
+    <div class="pw-wrap">
+      <input type="password" id="pw1" placeholder="New password" autocomplete="new-password">
+      <button type="button" class="eye" data-for="pw1" aria-label="Show password">👁</button>
+    </div>
+    <div class="pw-wrap">
+      <input type="password" id="pw2" placeholder="Repeat new password" autocomplete="new-password">
+      <button type="button" class="eye" data-for="pw2" aria-label="Show password">👁</button>
+    </div>
     <div class="msg" id="msg"></div>
     <button class="btn" id="save">Save my new password</button>
   </div>
@@ -67,6 +75,15 @@
     // Establish the recovery session from the link's tokens
     client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken || "" });
 
+    // Eye toggles — see exactly what you're typing
+    document.querySelectorAll(".eye").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var input = document.getElementById(btn.getAttribute("data-for"));
+        input.type = input.type === "password" ? "text" : "password";
+        btn.style.opacity = input.type === "text" ? "1" : ".65";
+      });
+    });
+
     document.getElementById("save").addEventListener("click", async function () {
       var msg = document.getElementById("msg");
       var pw1 = document.getElementById("pw1").value;
@@ -74,6 +91,22 @@
       msg.className = "msg";
       if (pw1.length < 6) { msg.textContent = "At least 6 characters, please 🌱"; msg.classList.add("err"); return; }
       if (pw1 !== pw2) { msg.textContent = "Those two don't match — try again?"; msg.classList.add("err"); return; }
+
+      // Old-password check: if signing in with the NEW password already
+      // works, it must equal the CURRENT password — ask for a different one.
+      try {
+        var me = await client.auth.getUser();
+        var email = me && me.data && me.data.user ? me.data.user.email : null;
+        if (email) {
+          var probe = await client.auth.signInWithPassword({ email: email, password: pw1 });
+          if (!probe.error) {
+            msg.textContent = "That's your current password — pick a brand-new one 🌱";
+            msg.classList.add("err");
+            return;
+          }
+        }
+      } catch (e) { /* probe failure never blocks the reset */ }
+
       var res = await client.auth.updateUser({ password: pw1 });
       if (res.error) { msg.textContent = "Hmm, that didn't work — request a fresh reset link from the app."; msg.classList.add("err"); return; }
       msg.textContent = "Done! Your new password is saved. Open the app and sign in 🌿"; msg.classList.add("ok");
