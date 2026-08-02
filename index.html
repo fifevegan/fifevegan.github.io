@@ -8,7 +8,7 @@
 <meta name="keywords" content="vegan, plant based, recipes, AI chef, vegan restaurants, meal planner, cooking app, vegan community, plant-based lifestyle">
 <meta name="author" content="FiFE">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#1A2418">
+<meta name="theme-color" content="#F6F1E6">
 
 <!-- Canonical URL — update to your real domain when live (e.g. https://fife.app) -->
 <link rel="canonical" href="https://fife.app/">
@@ -43,20 +43,21 @@
   :root{
     --ink:#1A2418;
     --ink-2:#22301F;
-    --cream:#F4EFE6;
-    --cream-dim:#D8D2C4;
+    --bg:#F6F1E6;
+    --cream:#33402E;
+    --cream-dim:#6E7A63;
     --leaf:#7A9A5D;
     --leaf-light:#9DBE7C;
     --wood:#C49A6C;
     --marigold:#D6A244;
-    --glass:rgba(244,239,230,.05);
-    --glass-border:rgba(244,239,230,.12);
+    --glass:rgba(51,64,46,.05);
+    --glass-border:rgba(51,64,46,.14);
     --radius:20px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--ink);
+    background:var(--bg);
     color:var(--cream);
     font-family:"Outfit",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     font-weight:300;
@@ -107,7 +108,7 @@
     overflow:hidden;
     pointer-events:none;
     background:
-      radial-gradient(ellipse 80% 55% at 50% -10%, #22301F 0%, var(--ink) 70%);
+      radial-gradient(ellipse 80% 55% at 50% -10%, #E9DFC9 0%, var(--bg) 70%);
   }
   .orb{
     position:absolute;
@@ -176,7 +177,7 @@
     top:0;
     z-index:100;
     padding:18px 0;
-    background:rgba(26,36,24,.65);
+    background:rgba(246,241,230,.85);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--glass-border);
@@ -389,7 +390,7 @@
   .card:hover{
     transform:translateY(-6px);
     border-color:rgba(157,190,124,.35);
-    box-shadow:0 20px 48px rgba(0,0,0,.35),0 0 0 1px rgba(157,190,124,.08) inset;
+    box-shadow:0 20px 48px rgba(90,74,54,.18),0 0 0 1px rgba(157,190,124,.08) inset;
   }
 
   /* ---------- scroll reveal ---------- */
