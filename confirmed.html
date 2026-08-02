@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're confirmed 🌱 — FiFE</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+  :root { --cream:#F4EFE6; --leaf:#5C7A45; --leaf-dark:#47613A; --ink:#3A352E; --muted:#8A8177; --white:#FFFDF8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--cream); color: var(--ink); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { background: var(--white); border:1px solid #E7DECF; border-radius:24px; padding:40px 28px; max-width:420px; width:100%; text-align:center; box-shadow:0 8px 30px rgba(90,74,54,.08); }
+  .leaf { font-size:52px; display:block; margin-bottom:16px; }
+  h1 { font-size:26px; color:var(--leaf-dark); margin-bottom:10px; }
+  p { font-size:15px; line-height:1.55; color:var(--muted); margin-bottom:22px; }
+  .btn { display:inline-block; background:var(--leaf); color:#fff; text-decoration:none; font-size:16px; font-weight:bold; padding:14px 32px; border-radius:16px; border:none; cursor:pointer; width:100%; font-family:inherit; }
+  .btn:active { background: var(--leaf-dark); }
+  .hint { margin-top:14px; font-size:13px; }
+  input { width:100%; padding:14px 16px; font-size:16px; border:1px solid #E0D5C2; border-radius:14px; margin-bottom:12px; background:#FBF7EE; font-family:inherit; }
+  .msg { font-size:14px; margin-bottom:14px; min-height:20px; }
+  .msg.ok { color: var(--leaf-dark); }
+  .msg.err { color:#A4502E; }
+  .brand { margin-top:26px; font-size:13px; color:var(--muted); letter-spacing:.5px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="leaf">🌱</span>
+
+  <!-- Confirmed state (default) -->
+  <div id="confirmed">
+    <h1>You're confirmed!</h1>
+    <p>Your email is verified and your FiFE account is ready. Open the app and sign in — the kitchen is warm and waiting.</p>
+    <a class="btn" href="veganfife://">Open FiFE</a>
+    <p class="hint">Nothing happens? That just means the app isn't on this phone yet — grab it from <a href="https://fifevegan.github.io/">fifevegan.github.io</a> 🌿</p>
+  </div>
+
+  <!-- Password reset state (shown only for recovery links) -->
+  <div id="reset" style="display:none">
+    <h1>Choose a new password</h1>
+    <p>Almost done — pick a fresh password (at least 6 characters) and you're back in.</p>
+    <input type="password" id="pw1" placeholder="New password" autocomplete="new-password">
+    <input type="password" id="pw2" placeholder="Repeat new password" autocomplete="new-password">
+    <div class="msg" id="msg"></div>
+    <button class="btn" id="save">Save my new password</button>
+  </div>
+
+  <div class="brand">FiFE ~ A Vegan Friendly Lifestyle</div>
+</div>
+
+<script>
+(function () {
+  // Supabase appends auth tokens to this page's URL hash (#access_token=...&type=...)
+  var hash = new URLSearchParams(window.location.hash.substring(1));
+  var type = hash.get("type");
+  var accessToken = hash.get("access_token");
+  var refreshToken = hash.get("refresh_token");
+
+  if (type === "recovery" && accessToken) {
+    document.getElementById("confirmed").style.display = "none";
+    document.getElementById("reset").style.display = "block";
+
+    var client = window.supabase.createClient(
+      "https://agiarjamvtbbqgeetalz.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnaWFyamFtdnRiYnFnZWV0YWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDg4NzgsImV4cCI6MjEwMDMyNDg3OH0.wGXbhISdwf4FvjbziJ67r6e5QqPzTEw0a5BddI4FPq0"
+    );
+    // Establish the recovery session from the link's tokens
+    client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken || "" });
+
+    document.getElementById("save").addEventListener("click", async function () {
+      var msg = document.getElementById("msg");
+      var pw1 = document.getElementById("pw1").value;
+      var pw2 = document.getElementById("pw2").value;
+      msg.className = "msg";
+      if (pw1.length < 6) { msg.textContent = "At least 6 characters, please 🌱"; msg.classList.add("err"); return; }
+      if (pw1 !== pw2) { msg.textContent = "Those two don't match — try again?"; msg.classList.add("err"); return; }
+      var res = await client.auth.updateUser({ password: pw1 });
+      if (res.error) { msg.textContent = "Hmm, that didn't work — request a fresh reset link from the app."; msg.classList.add("err"); return; }
+      msg.textContent = "Done! Your new password is saved. Open the app and sign in 🌿"; msg.classList.add("ok");
+      document.getElementById("pw1").value = "";
+      document.getElementById("pw2").value = "";
+    });
+  }
+})();
+</script>
+</body>
+</html>
