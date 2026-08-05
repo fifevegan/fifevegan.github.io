@@ -265,6 +265,7 @@
     font-size:clamp(2.7rem,7.5vw,5.2rem);
     font-weight:600;
     letter-spacing:-.01em;
+    line-height:1.18; /* room for italic descenders (the "y" in Friendly) */
     margin-bottom:26px;
   }
   .hero h1 .dash{
@@ -274,7 +275,8 @@
   .hero h1 em{
     font-style:italic;
     font-weight:500;
-    padding:0 .12em .06em .04em; /* stop italic overhang clipping glyphs on any side */
+    display:inline-block;
+    padding:0 .12em .16em .04em; /* extra bottom room so the italic "y" descender never clips */
     background:linear-gradient(120deg,var(--leaf-light) 0%,var(--marigold) 100%);
     -webkit-background-clip:text;
     background-clip:text;
