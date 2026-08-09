@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FiFE ~ A Vegan Friendly Lifestyle</title>
 <meta name="description" content="FiFE is your warm guide to plant-based living. Ask UCHE, your kitchen companion, what to cook with what you have. Discover 15,000+ vegan & organic places near you. Share your plates with a kind community. Android beta available now; iOS coming soon.">
 <meta name="keywords" content="vegan, plant based, recipes, AI chef, vegan restaurants, meal planner, cooking app, vegan community, plant-based lifestyle">
@@ -74,6 +74,7 @@
     margin:0 auto;
     padding:0 24px;
   }
+  @media (max-width:400px){.wrap{padding:0 18px;}}
 
   /* ---------- accessibility: skip link ---------- */
   .skip-link{
@@ -224,8 +225,56 @@
     transition:background .2s ease,transform .2s ease !important;
   }
   .nav-cta:hover{background:#e3b45a;transform:translateY(-1px);border-bottom-color:transparent !important;}
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:var(--cream);
+    font-size:1.4rem;
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:8px;
+    line-height:1;
+  }
+  .menu-toggle:focus-visible{
+    outline:3px solid var(--leaf-light);
+    outline-offset:2px;
+  }
   @media (max-width:640px){
-    nav .nav-link{display:none;}
+    header .wrap{position:relative;}
+    .menu-toggle{display:block;margin-left:auto;}
+    nav{
+      position:absolute;
+      top:100%;
+      left:0;right:0;
+      background:rgba(42,54,38,.95);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      flex-direction:column;
+      padding:16px 24px;
+      gap:4px;
+      border-bottom:1px solid var(--glass-border);
+      transform:translateY(-8px);
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .25s ease,transform .25s ease,visibility .25s;
+      z-index:99;
+    }
+    nav.open{
+      transform:translateY(0);
+      opacity:1;
+      visibility:visible;
+    }
+    nav .nav-link{
+      display:block;
+      padding:12px 0;
+      text-align:center;
+      font-size:1rem;
+    }
+    .nav-cta{
+      display:inline-block !important;
+      margin-top:8px;
+    }
   }
 
   /* ---------- hero ---------- */
@@ -371,6 +420,7 @@
 
   /* ---------- shared section chrome ---------- */
   section{padding:88px 0;}
+  @media (max-width:640px){section{padding:56px 0;}}
   .section-kicker{
     display:block;
     text-align:center;
@@ -413,6 +463,7 @@
     border-color:rgba(157,190,124,.35);
     box-shadow:0 20px 48px rgba(0,0,0,.35),0 0 0 1px rgba(157,190,124,.08) inset;
   }
+  @media (max-width:640px){.card{padding:28px 20px;}}
 
   /* ---------- scroll reveal ---------- */
   .reveal{
@@ -490,6 +541,7 @@
     mask-composite:exclude;
     pointer-events:none;
   }
+  @media (max-width:640px){.creator-card{padding:40px 24px;}}
   .creator-card .plan-tag{
     display:inline-block;
     font-size:.75rem;
@@ -618,6 +670,10 @@
     align-items:center;
     flex-wrap:wrap;
   }
+  @media (max-width:640px){
+    footer .wrap{flex-direction:column;text-align:center;gap:18px;}
+    .foot-links{justify-content:center;}
+  }
 
   /* ---------- accessibility: reduced motion ---------- */
   @media (prefers-reduced-motion: reduce){
@@ -647,10 +703,10 @@
 -->
 <script>
   // PLAY_URL — Google Play closed-beta link (counts toward the 12-tester launch requirement).
-  // DIRECT_APK_URL — direct download of the latest EAS preview build (versionCode 4, 2026-08-08),
+  // DIRECT_APK_URL — direct download of the latest EAS preview build (v7 local verified build, 2026-08-09),
   // for visitors not yet whitelisted as Play testers.
   const PLAY_URL = "https://play.google.com/apps/testing/com.veganfife.app";
-  const DIRECT_APK_URL = "https://expo.dev/artifacts/eas/Dl0Lwh_RwFdi72pMQcDlkHWyqdPbhf-r_I7tYnHvDuM.apk";
+  const DIRECT_APK_URL = "https://fifevegan.github.io/fife-v7.apk";
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("a[data-apk]").forEach(function (a) {
       a.href = PLAY_URL;
@@ -672,7 +728,8 @@
 <header>
   <div class="wrap">
     <a class="brand" href="#" aria-current="page"><span class="sprig" aria-hidden="true">🌱</span>FiFE</a>
-    <nav aria-label="Primary">
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">☰</button>
+    <nav id="primary-nav" aria-label="Primary">
       <a class="nav-link" href="#features">What it does</a>
       <a class="nav-link" href="#creator">Creator plan</a>
       <a class="nav-link" href="#contact">Contact</a>
@@ -704,7 +761,7 @@
         </a>
         <span class="btn-secondary" aria-disabled="true"><span aria-hidden="true">🍎</span> iOS coming soon</span>
       </div>
-      <p class="soon"><a data-apk-direct href="https://expo.dev/artifacts/eas/Dl0Lwh_RwFdi72pMQcDlkHWyqdPbhf-r_I7tYnHvDuM.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
+      <p class="soon"><a data-apk-direct href="https://fifevegan.github.io/fife-v7.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
       <p class="hero-note">Free beta · Now on Google Play (closed testing) · iOS on the way</p>
     </div>
   </section>
@@ -764,7 +821,7 @@
         <a class="btn-primary" data-apk href="https://play.google.com/apps/testing/com.veganfife.app">
           Start with the free beta
         </a>
-        <p class="soon">Creator plan unlocks in-app at public launch. <a data-apk-direct href="https://expo.dev/artifacts/eas/Dl0Lwh_RwFdi72pMQcDlkHWyqdPbhf-r_I7tYnHvDuM.apk">Or download the APK directly ↓</a></p>
+        <p class="soon">Creator plan unlocks in-app at public launch. <a data-apk-direct href="https://fifevegan.github.io/fife-v7.apk">Or download the APK directly ↓</a></p>
       </div>
     </div>
   </section>
@@ -807,7 +864,7 @@
         </a>
         <span class="btn-secondary" aria-disabled="true"><span aria-hidden="true">🍎</span> iOS coming soon</span>
       </div>
-      <p class="soon"><a data-apk-direct href="https://expo.dev/artifacts/eas/Dl0Lwh_RwFdi72pMQcDlkHWyqdPbhf-r_I7tYnHvDuM.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
+      <p class="soon"><a data-apk-direct href="https://fifevegan.github.io/fife-v7.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
     </div>
   </section>
 
@@ -846,6 +903,32 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     els.forEach(function (el) { io.observe(el); });
+  })();
+
+  // Mobile nav toggle
+  (function(){
+    var toggle = document.querySelector('.menu-toggle');
+    var nav = document.getElementById('primary-nav');
+    if(!toggle || !nav) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.textContent = open ? '✕' : '☰';
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '☰';
+      });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('open')){
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = '☰';
+      }
+    });
   })();
 </script>
 
