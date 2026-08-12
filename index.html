@@ -702,14 +702,15 @@
   └──────────────────────────────────────────────────────────────────────┘
 -->
 <script>
-  // PLAY_URL — Google Play closed-beta link (counts toward the 12-tester launch requirement).
-  // DIRECT_APK_URL — direct download of the latest EAS preview build (v7 local verified build, 2026-08-09),
-  // for visitors not yet whitelisted as Play testers.
+  // PLAY_URL — Google Play closed-beta link (whitelisted testers only).
+  // DIRECT_APK_URL — direct download of the latest build (v11, versionCode 5, 2026-08-11).
+  // 2026-08-12: primary CTAs now serve the DIRECT APK — the owner wants regular
+  // users, not just whitelisted Play testers. Play link stays available below.
   const PLAY_URL = "https://play.google.com/apps/testing/com.veganfife.app";
   const DIRECT_APK_URL = "https://fife.earth/fife-v11.apk";
   document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("a[data-apk]").forEach(function (a) {
-      a.href = PLAY_URL;
+      a.href = DIRECT_APK_URL;
     });
     document.querySelectorAll("a[data-apk-direct]").forEach(function (a) {
       a.href = DIRECT_APK_URL;
@@ -734,7 +735,7 @@
       <a class="nav-link" href="#creator">Creator plan</a>
       <a class="nav-link" href="#contact">Contact</a>
       <!-- UPDATE APK LINK HERE: href is set from the APK_URL constant at the top of this file -->
-      <a class="nav-link nav-cta" data-apk href="https://play.google.com/apps/testing/com.veganfife.app">Get the app</a>
+      <a class="nav-link nav-cta" data-apk href="https://fife.earth/fife-v11.apk">Get the app</a>
     </nav>
   </div>
 </header>
@@ -756,42 +757,41 @@
       </p>
       <div class="hero-ctas">
         <!-- UPDATE APK LINK HERE: href is set from the APK_URL constant at the top of this file -->
-        <a class="btn-primary" data-apk href="https://play.google.com/apps/testing/com.veganfife.app">
+        <a class="btn-primary" data-apk href="https://fife.earth/fife-v11.apk">
           <span aria-hidden="true">🤖</span> Download for Android
         </a>
         <span class="btn-secondary" aria-disabled="true"><span aria-hidden="true">🍎</span> iOS coming soon</span>
       </div>
-      <p class="soon"><a data-apk-direct href="https://fife.earth/fife-v11.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
-      <p class="hero-note">Free beta · Now on Google Play (closed testing) · iOS on the way</p>
+      <p class="soon">Free instant download — Android may ask you to allow the install; that's normal 🌱</p>
+      <p class="hero-note">Free beta · Full Play Store launch coming soon · iOS on the way</p>
     </div>
   </section>
 
   <!-- ============ 1b · HOW TO JOIN THE BETA ============ -->
   <section id="beta" aria-label="How to join the beta" style="padding-top:8px;">
     <div class="wrap">
-      <span class="section-kicker reveal">Join the beta</span>
+      <span class="section-kicker reveal">Get the app</span>
       <h2 class="section-title reveal">In, in <em>three</em> small steps</h2>
-      <p class="section-sub reveal d1">FiFE is in closed testing on Google Play — here's how to get your seat at the table.</p>
+      <p class="section-sub reveal d1">FiFE is in free beta on Android — no sign-up walls, no waiting lists.</p>
       <div class="values-strip">
         <div class="value reveal d1">
-          <span class="v-icon" aria-hidden="true">📩</span>
-          <h3>1 · Send us your Gmail</h3>
-          <p>Message the Gmail address you use on Google Play to <strong>fife.vegan@gmail.com</strong> (or DM <strong>@fife.vegan</strong> on Instagram, TikTok or Facebook).</p>
+          <span class="v-icon" aria-hidden="true">⬇️</span>
+          <h3>1 · Tap download</h3>
+          <p>Hit any green button on this page — the app downloads straight to your Android phone.</p>
         </div>
         <div class="value reveal d2">
           <span class="v-icon" aria-hidden="true">✅</span>
-          <h3>2 · We whitelist you</h3>
-          <p>We add you to the tester list, usually within the hour, and send you the confirmation with your links.</p>
+          <h3>2 · Allow the install</h3>
+          <p>Android may ask "allow installs from this source?" — that's normal for beta apps. Tap allow, then install.</p>
         </div>
         <div class="value reveal d3">
           <span class="v-icon" aria-hidden="true">🌱</span>
-          <h3>3 · Tap the link &amp; install</h3>
-          <p>Open the Google Play testing link on your phone, accept, install — and every future update arrives automatically.</p>
+          <h3>3 · Open &amp; explore</h3>
+          <p>Find vegan spots near you, browse 212 recipes, meet UCHE, and join the community. Welcome!</p>
         </div>
       </div>
       <p class="section-sub reveal d2" style="margin-top:18px;">
-        Can't wait? <a data-apk-direct href="https://fife.earth/fife-v11.apk">Download the APK directly ↓</a>
-        — instant, no whitelist needed, but it won't auto-update (reinstall for new versions) and doesn't count as a Play tester.
+        Prefer Google Play with automatic updates? Message your Play Gmail to <strong>fife.vegan@gmail.com</strong> and we'll add you to the Play beta list.
       </p>
     </div>
   </section>
@@ -848,10 +848,10 @@
           <li>Early access to every new feature</li>
         </ul>
         <!-- UPDATE APK LINK HERE: href is set from the APK_URL constant at the top of this file -->
-        <a class="btn-primary" data-apk href="https://play.google.com/apps/testing/com.veganfife.app">
+        <a class="btn-primary" data-apk href="https://fife.earth/fife-v11.apk">
           Start with the free beta
         </a>
-        <p class="soon">Creator plan unlocks in-app at public launch. <a data-apk-direct href="https://fife.earth/fife-v11.apk">Or download the APK directly ↓</a></p>
+        <p class="soon">Creator plan unlocks in-app at public launch — the beta is completely free 🌱</p>
       </div>
     </div>
   </section>
@@ -889,12 +889,12 @@
       <p class="reveal d1">The Android beta is ready today. Install the APK, say hello to UCHE, and help us grow the grove.</p>
       <div class="hero-ctas reveal d2">
         <!-- UPDATE APK LINK HERE: href is set from the APK_URL constant at the top of this file -->
-        <a class="btn-primary" data-apk href="https://play.google.com/apps/testing/com.veganfife.app">
+        <a class="btn-primary" data-apk href="https://fife.earth/fife-v11.apk">
           <span aria-hidden="true">🤖</span> Download for Android
         </a>
         <span class="btn-secondary" aria-disabled="true"><span aria-hidden="true">🍎</span> iOS coming soon</span>
       </div>
-      <p class="soon"><a data-apk-direct href="https://fife.earth/fife-v11.apk">Not a whitelisted tester yet? Download the APK directly ↓</a></p>
+      <p class="soon">Free instant download — no sign-up walls, no waiting lists 🌱</p>
     </div>
   </section>
 
