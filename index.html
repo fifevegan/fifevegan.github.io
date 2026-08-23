@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>FiFE ~ A Vegan Friendly Lifestyle</title>
-<meta name="description" content="FiFE is your warm guide to plant-based living. Ask UCHE, your kitchen companion, what to cook with what you have. Discover 15,000+ vegan & organic places near you. Share your plates with a kind community. Android beta + iPhone TestFlight beta available now.">
+<title>FiFE — Find Vegan Food Anywhere | Free Vegan App</title>
+<meta name="description" content="FiFE is the free vegan lifestyle app: 15,000+ vegan restaurants, cafés and stores on one map, 200+ recipes, and UCHE — an AI kitchen companion who turns what's in your fridge into dinner. Free beta on iPhone & Android.">
 <meta name="keywords" content="vegan, plant based, recipes, AI chef, vegan restaurants, meal planner, cooking app, vegan community, plant-based lifestyle">
 <meta name="author" content="FiFE">
 <meta name="robots" content="index, follow">
@@ -19,8 +19,7 @@
 <meta property="og:site_name" content="FiFE ~ A Vegan Friendly Lifestyle">
 <meta property="og:title" content="FiFE ~ A Vegan Friendly Lifestyle">
 <meta property="og:description" content="Your warm guide to plant-based living. Recipe ideas, 15,000+ vegan & organic places, and a kind community. Android beta + iPhone TestFlight beta available now.">
-<!-- TODO: create a 1200×630 OG image, upload to your host, and replace the placeholder below -->
-<meta property="og:image" content="https://fife.earth/assets/og-image.jpg">
+<meta property="og:image" content="https://fife.earth/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="FiFE app — a warm home for plant-based living">
@@ -32,7 +31,7 @@
 <meta name="twitter:title" content="FiFE ~ A Vegan Friendly Lifestyle">
 <meta name="twitter:description" content="Your warm guide to plant-based living. Recipe ideas, 15,000+ vegan & organic places, and a kind community. Android beta + iPhone TestFlight beta available now.">
 <!-- TODO: same OG image URL as above -->
-<meta name="twitter:image" content="https://fife.earth/assets/og-image.jpg">
+<meta name="twitter:image" content="https://fife.earth/og-image.jpg">
 <meta name="twitter:image:alt" content="FiFE app — a warm home for plant-based living">
 
 <!-- Google Fonts: Fraunces (display serif) + Outfit (clean sans) -->
@@ -748,22 +747,37 @@
     <span class="float-leaf l2" aria-hidden="true">🌿</span>
     <span class="float-leaf l3" aria-hidden="true">🍃</span>
     <div class="wrap">
-      <span class="kicker"><span class="dot"></span>Android + iPhone beta out now</span>
-      <h1>FiFE <span class="dash">~</span> <em>A Vegan Friendly Lifestyle</em></h1>
+      <span class="kicker"><span class="dot"></span>Free · No ads · No sign-up wall</span>
+      <h1>Find vegan food <em>anywhere.</em><br>Cook what you <em>love.</em></h1>
       <p class="tagline">
-        Good food, good places, good company. FiFE is a warm home for
-        plant-based living — a kitchen companion who's always happy to help, a living map of
-        vegan &amp; organic spots, and a community that shares the table.
+        FiFE is the free vegan lifestyle app: <strong>15,000+ vegan restaurants, cafés and stores</strong> on one map,
+        <strong>200+ recipes</strong> from Lagos to Tokyo, and <strong>UCHE</strong> — an AI kitchen companion
+        who turns whatever's in your fridge into dinner. Free on iPhone &amp; Android.
       </p>
       <div class="hero-ctas">
-        <!-- UPDATE APK LINK HERE: href is set from the APK_URL constant at the top of this file -->
-        <a class="btn-primary" data-apk href="https://fife.earth/fife-v14.apk">
-          <span aria-hidden="true">🤖</span> Download for Android
+        <!-- Smart CTA: JS below routes iPhone → TestFlight, Android → APK, desktop → #waitlist -->
+        <a class="btn-primary" id="smart-cta" href="#waitlist">
+          <span aria-hidden="true">🌱</span> Get FiFE free
         </a>
-        <a class="btn-secondary" href="https://testflight.apple.com/join/jhbqh7kr" target="_blank" rel="noopener"><span aria-hidden="true">🍏</span> iPhone beta (TestFlight)</a>
+        <a class="btn-secondary" href="#beta" style="cursor:pointer;">How to install (30 seconds)</a>
       </div>
       <p class="soon">Free instant download — Android may ask you to allow the install; that's normal 🌱</p>
-      <p class="hero-note">Free beta on iPhone &amp; Android · Full store launches coming soon</p>
+      <p class="hero-note"><strong>15,000+</strong> vegan places mapped · <strong>200+</strong> recipes · iPhone &amp; Android</p>
+      <p class="hero-note">Built by one person, tested by real vegans. Launching on the stores this week.</p>
+    </div>
+  </section>
+
+  <!-- ============ 1a · LAUNCH WAITLIST ============ -->
+  <section id="waitlist" aria-label="Get launch day in your inbox" style="padding-top:8px;padding-bottom:24px;">
+    <div class="wrap" style="text-align:center;max-width:640px;">
+      <h2 class="section-title reveal" style="font-size:clamp(1.5rem,3.2vw,2rem);margin-bottom:10px;">Get launch day in your <em>inbox</em> 🌱</h2>
+      <p class="section-sub reveal d1" style="margin-bottom:26px;">One email when FiFE goes live on the App Store &amp; Google Play — nothing else, no spam, unsubscribe anytime.</p>
+      <form id="waitlist-form" class="reveal d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" novalidate>
+        <input type="email" id="waitlist-email" name="email" required placeholder="you@email.com" autocomplete="email"
+          style="padding:15px 22px;border-radius:999px;border:1px solid var(--glass-border);background:var(--glass);color:var(--cream);min-width:260px;font-size:1rem;font-family:'Outfit',sans-serif;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
+        <button class="btn-primary" type="submit" id="waitlist-btn">Notify me at launch</button>
+      </form>
+      <p id="waitlist-msg" class="hero-note" role="status" aria-live="polite" style="margin-top:16px;"></p>
     </div>
   </section>
 
@@ -931,6 +945,74 @@
 <script>
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Smart CTA: iPhone → TestFlight, Android → direct APK, desktop → #waitlist (default href).
+  (function () {
+    var cta = document.getElementById('smart-cta');
+    if (!cta) return;
+    var ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/.test(ua)) {
+      cta.href = "https://testflight.apple.com/join/jhbqh7kr";
+      cta.setAttribute('target', '_blank');
+      cta.setAttribute('rel', 'noopener');
+      cta.innerHTML = '<span aria-hidden="true">🍏</span> Get FiFE free on iPhone';
+    } else if (/Android/.test(ua)) {
+      cta.href = "https://fife.earth/fife-v14.apk";
+      cta.innerHTML = '<span aria-hidden="true">🤖</span> Get FiFE free on Android';
+    }
+  })();
+
+  // Launch waitlist → Supabase REST (plain fetch, no libraries)
+  (function () {
+    var form = document.getElementById('waitlist-form');
+    var input = document.getElementById('waitlist-email');
+    var msg = document.getElementById('waitlist-msg');
+    var btn = document.getElementById('waitlist-btn');
+    if (!form) return;
+    var SUPABASE_URL = "https://agiarjamvtbbqgeetalz.supabase.co/rest/v1/waitlist_emails";
+    var SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnaWFyamFtdnRiYnFnZWV0YWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDg4NzgsImV4cCI6MjEwMDMyNDg3OH0.wGXbhISdwf4FvjbziJ67r6e5QqPzTEw0a5BddI4FPq0";
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        msg.style.color = '#E8A0A0';
+        msg.textContent = "Hmm, that email doesn't look quite right — mind checking it? 🌱";
+        input.focus();
+        return;
+      }
+      btn.disabled = true;
+      btn.style.opacity = '.6';
+      msg.style.color = 'var(--cream-dim)';
+      msg.textContent = "Saving your seat…";
+      fetch(SUPABASE_URL, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email: email })
+      }).then(function (res) {
+        if (res.ok || res.status === 201) {
+          form.style.display = 'none';
+          msg.style.color = 'var(--leaf-light)';
+          msg.textContent = "You're in 🌱 We'll write the moment FiFE hits the stores. Welcome to the grove!";
+        } else if (res.status === 409) {
+          form.style.display = 'none';
+          msg.style.color = 'var(--leaf-light)';
+          msg.textContent = "You're already on the list 💚 See you on launch day!";
+        } else {
+          throw new Error('HTTP ' + res.status);
+        }
+      }).catch(function () {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        msg.style.color = '#E8A0A0';
+        msg.textContent = "Something hiccuped on our side — please try again in a moment, or email hello@fife.earth and we'll add you by hand 🌱";
+      });
+    });
+  })();
 
   // Scroll-reveal animations via IntersectionObserver (with graceful fallback)
   (function () {
