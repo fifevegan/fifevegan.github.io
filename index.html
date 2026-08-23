@@ -755,9 +755,12 @@
         who turns whatever's in your fridge into dinner. Free on iPhone &amp; Android.
       </p>
       <div class="hero-ctas">
-        <!-- Smart CTA: JS below routes iPhone → TestFlight, Android → APK, desktop → #waitlist -->
-        <a class="btn-primary" id="smart-cta" href="#waitlist">
-          <span aria-hidden="true">🌱</span> Get FiFE free
+        <!-- Two explicit buttons: visitors choose their platform, no detection games -->
+        <a class="btn-primary" href="https://testflight.apple.com/join/jhbqh7kr" target="_blank" rel="noopener">
+          <span aria-hidden="true">🍏</span> Download for iPhone
+        </a>
+        <a class="btn-primary" data-apk href="https://fife.earth/fife-v14.apk">
+          <span aria-hidden="true">🤖</span> Download for Android
         </a>
         <a class="btn-secondary" href="#beta" style="cursor:pointer;">How to install (30 seconds)</a>
       </div>
@@ -945,22 +948,6 @@
 <script>
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Smart CTA: iPhone → TestFlight, Android → direct APK, desktop → #waitlist (default href).
-  (function () {
-    var cta = document.getElementById('smart-cta');
-    if (!cta) return;
-    var ua = navigator.userAgent;
-    if (/iPhone|iPad|iPod/.test(ua)) {
-      cta.href = "https://testflight.apple.com/join/jhbqh7kr";
-      cta.setAttribute('target', '_blank');
-      cta.setAttribute('rel', 'noopener');
-      cta.innerHTML = '<span aria-hidden="true">🍏</span> Get FiFE free on iPhone';
-    } else if (/Android/.test(ua)) {
-      cta.href = "https://fife.earth/fife-v14.apk";
-      cta.innerHTML = '<span aria-hidden="true">🤖</span> Get FiFE free on Android';
-    }
-  })();
 
   // Launch waitlist → Supabase REST (plain fetch, no libraries)
   (function () {
