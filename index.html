@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FiFE — Find Vegan Food Anywhere | Free Vegan App</title>
-<meta name="description" content="FiFE is the free vegan lifestyle app: 22,000+ vegan restaurants, cafés and stores on one map, 230+ recipes, and UCHE — an AI kitchen companion who turns what's in your fridge into dinner. Live on the App Store and Google Play now.">
+<meta name="description" content="FiFE is the free vegan lifestyle app: 22,000+ vegan restaurants, cafés and stores on one map, 230+ recipes, and UCHE — your warm kitchen companion who turns whatever's in your fridge into dinner. Live on the App Store and Google Play now.">
 <meta name="keywords" content="vegan, plant based, recipes, AI chef, vegan restaurants, meal planner, cooking app, vegan community, plant-based lifestyle">
 <meta name="author" content="FiFE">
 <meta name="robots" content="index, follow">
@@ -687,6 +687,7 @@
     .reveal{opacity:1;transform:none;}
     .card:hover,.btn-primary:hover{transform:none;}
   }
+.store-link{color:#d8e8c8 !important;text-decoration:underline;text-underline-offset:3px;}
 </style>
 </head>
 <body>
@@ -751,7 +752,7 @@
       <h1>Find vegan food <em>anywhere.</em><br>Cook what you <em>love.</em></h1>
       <p class="tagline">
         FiFE is the free vegan lifestyle app: <strong>22,000+ vegan restaurants, cafés and stores</strong> on one map,
-        <strong>230+ recipes</strong> from Lagos to Tokyo, and <strong>UCHE</strong> — an AI kitchen companion
+        <strong>230+ recipes</strong> from Lagos to Tokyo, and <strong>UCHE</strong> — your warm kitchen companion
         who turns whatever's in your fridge into dinner. Free on iPhone &amp; Android.
       </p>
       <div class="hero-ctas">
@@ -778,7 +779,7 @@
       <form id="waitlist-form" class="reveal d2" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;" novalidate>
         <input type="email" id="waitlist-email" name="email" required placeholder="you@email.com" autocomplete="email"
           style="padding:15px 22px;border-radius:999px;border:1px solid var(--glass-border);background:var(--glass);color:var(--cream);min-width:260px;font-size:1rem;font-family:'Outfit',sans-serif;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);">
-        <button class="btn-primary" type="submit" id="waitlist-btn">Notify me at launch</button>
+        <button class="btn-primary" type="submit" id="waitlist-btn">Keep me posted 🌱</button>
       </form>
       <p id="waitlist-msg" class="hero-note" role="status" aria-live="polite" style="margin-top:16px;"></p>
     </div>
@@ -816,7 +817,7 @@
         <div class="value reveal d2">
           <span class="v-icon" aria-hidden="true">🤖</span>
           <h3>Android · Google Play</h3>
-          <p>No warnings, automatic updates. Message your <strong>Play Store Gmail</strong> to <strong>fife.vegan@gmail.com</strong> (or WhatsApp us) — we'll add you to the trusted tester list within hours, then you simply <a href="https://play.google.com/apps/testing/com.veganfife.app" target="_blank" rel="noopener">install FiFE from Google Play</a> like any normal app.</p>
+          <p>Live on Google Play — one tap, automatic updates, no warnings. <a class="store-link" href="https://play.google.com/store/apps/details?id=com.veganfife.app" target="_blank" rel="noopener"><strong>Get FiFE on Google Play</strong></a> and you're in.</p>
         </div>
         <div class="value reveal d3">
           <span class="v-icon" aria-hidden="true">📦</span>
@@ -989,7 +990,7 @@
         } else if (res.status === 409) {
           form.style.display = 'none';
           msg.style.color = 'var(--leaf-light)';
-          msg.textContent = "You're already on the list 💚 Android launch news incoming!";
+          msg.textContent = "You're already in the grove 💚 News incoming!";
         } else {
           throw new Error('HTTP ' + res.status);
         }
