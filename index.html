@@ -951,15 +951,14 @@
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Launch waitlist → Supabase REST (plain fetch, no libraries)
+  // Waitlist → subscribe-email edge function (saves to Supabase AND Brevo)
   (function () {
     var form = document.getElementById('waitlist-form');
     var input = document.getElementById('waitlist-email');
     var msg = document.getElementById('waitlist-msg');
     var btn = document.getElementById('waitlist-btn');
     if (!form) return;
-    var SUPABASE_URL = "https://agiarjamvtbbqgeetalz.supabase.co/rest/v1/waitlist_emails";
-    var SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnaWFyamFtdnRiYnFnZWV0YWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDg4NzgsImV4cCI6MjEwMDMyNDg3OH0.wGXbhISdwf4FvjbziJ67r6e5QqPzTEw0a5BddI4FPq0";
+    var SUBSCRIBE_URL = "https://agiarjamvtbbqgeetalz.supabase.co/functions/v1/subscribe-email";
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = (input.value || '').trim();
@@ -973,24 +972,15 @@
       btn.style.opacity = '.6';
       msg.style.color = 'var(--cream-dim)';
       msg.textContent = "Saving your seat…";
-      fetch(SUPABASE_URL, {
+      fetch(SUBSCRIBE_URL, {
         method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
       }).then(function (res) {
-        if (res.ok || res.status === 201) {
+        if (res.ok) {
           form.style.display = 'none';
           msg.style.color = 'var(--leaf-light)';
-          msg.textContent = "You're in 🌱 We'll write the moment FiFE hits the stores. Welcome to the grove!";
-        } else if (res.status === 409) {
-          form.style.display = 'none';
-          msg.style.color = 'var(--leaf-light)';
-          msg.textContent = "You're already in the grove 💚 News incoming!";
+          msg.textContent = "You're in 🌱 One warm email a week — new cities, new recipes, creator perks. Welcome to the grove!";
         } else {
           throw new Error('HTTP ' + res.status);
         }
