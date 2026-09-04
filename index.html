@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>FiFE — Find Vegan Food Anywhere | Free Vegan App</title>
-<meta name="description" content="FiFE is the free vegan lifestyle app: 22,000+ vegan restaurants, cafés and stores on one map, 230+ recipes, and UCHE — your warm kitchen companion who turns whatever's in your fridge into dinner. Live on the App Store and Google Play now.">
+<meta name="description" content="FiFE is the free vegan lifestyle app: 22,000+ vegan restaurants, cafés and stores across 120+ cities in 50+ countries, 230+ recipes, and UCHE — your warm kitchen companion who turns whatever's in your fridge into dinner. Live on the App Store and Google Play now.">
 <meta name="keywords" content="vegan, plant based, recipes, AI chef, vegan restaurants, meal planner, cooking app, vegan community, plant-based lifestyle">
 <meta name="author" content="FiFE">
 <meta name="robots" content="index, follow">
@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://fife.earth/">
 <meta property="og:site_name" content="FiFE ~ A Vegan Friendly Lifestyle">
 <meta property="og:title" content="FiFE ~ A Vegan Friendly Lifestyle">
-<meta property="og:description" content="Your warm guide to plant-based living. Recipe ideas, 22,000+ vegan & organic places, and a kind community. Free on the App Store and Google Play now.">
+<meta property="og:description" content="Your warm guide to plant-based living. Recipe ideas, 22,000+ vegan & organic places across 120+ cities in 50+ countries, and a kind community. Free on the App Store and Google Play now.">
 <meta property="og:image" content="https://fife.earth/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://fife.earth/">
 <meta name="twitter:title" content="FiFE ~ A Vegan Friendly Lifestyle">
-<meta name="twitter:description" content="Your warm guide to plant-based living. Recipe ideas, 22,000+ vegan & organic places, and a kind community. Free on the App Store and Google Play now.">
+<meta name="twitter:description" content="Your warm guide to plant-based living. Recipe ideas, 22,000+ vegan & organic places across 120+ cities in 50+ countries, and a kind community. Free on the App Store and Google Play now.">
 <!-- TODO: same OG image URL as above -->
 <meta name="twitter:image" content="https://fife.earth/og-image.jpg">
 <meta name="twitter:image:alt" content="FiFE app — a warm home for plant-based living">
@@ -689,6 +689,70 @@
   }
 .store-link{color:#d8e8c8 !important;text-decoration:underline;text-underline-offset:3px;}
 </style>
+<!-- JSON-LD Structured Data — SoftwareApplication + Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "FiFE: A Vegan Lifestyle",
+      "alternateName": "FiFE ~ A Vegan Friendly Lifestyle",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": ["iOS", "Android"],
+      "description": "FiFE is the free vegan lifestyle app: 22,000+ vegan restaurants, cafés and stores across 120+ cities in 50+ countries, 230+ recipes, and UCHE — your warm kitchen companion who turns whatever's in your fridge into dinner.",
+      "image": "https://fife.earth/og-image.jpg",
+      "url": "https://fife.earth/",
+      "downloadUrl": [
+        "https://apps.apple.com/app/fife-vegan-friendly-lifestyle/id6801641205",
+        "https://play.google.com/store/apps/details?id=com.veganfife.app"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "FiFE",
+        "url": "https://fife.earth/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "FiFE",
+        "url": "https://fife.earth/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://fife.earth/og-image.jpg"
+        },
+        "sameAs": [
+          "https://instagram.com/fife.vegan",
+          "https://www.tiktok.com/@fife.vegan"
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP",
+        "description": "Free download with optional Creator subscription"
+      },
+      "featureList": [
+        "Discover vegan restaurants, cafés and organic stores near you",
+        "AI kitchen companion (UCHE) for recipe ideas from your fridge",
+        "Growing library of 230+ plant-based recipes",
+        "Community feed to share meals and follow cooks",
+        "Shopping lists that organise themselves"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "FiFE ~ A Vegan Friendly Lifestyle",
+      "url": "https://fife.earth/",
+      "description": "Your warm guide to plant-based living. Recipe ideas, 22,000+ vegan & organic places across 120+ cities in 50+ countries, and a kind community. Free on the App Store and Google Play.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "FiFE",
+        "url": "https://fife.earth/"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -751,9 +815,10 @@
       <span class="kicker"><span class="dot"></span>Free · No ads · No sign-up wall</span>
       <h1>Find vegan food <em>anywhere.</em><br>Cook what you <em>love.</em></h1>
       <p class="tagline">
-        FiFE is the free vegan lifestyle app: <strong>22,000+ vegan restaurants, cafés and stores</strong> on one map,
-        <strong>230+ recipes</strong> from Lagos to Tokyo, and <strong>UCHE</strong> — your warm kitchen companion
-        who turns whatever's in your fridge into dinner. Free on iPhone &amp; Android.
+        FiFE is the free vegan lifestyle app: <strong>22,000+ vegan restaurants, cafés and stores</strong> across
+        <strong>120+ cities in 50+ countries</strong> on one map, <strong>230+ recipes</strong> from Lagos to Tokyo,
+        and <strong>UCHE</strong> — your warm kitchen companion who turns whatever's in your fridge into dinner.
+        Free on iPhone &amp; Android.
       </p>
       <div class="hero-ctas">
         <!-- Two explicit buttons: visitors choose their platform, no detection games -->
@@ -766,8 +831,8 @@
         <a class="btn-secondary" href="#beta" style="cursor:pointer;">How to install (30 seconds)</a>
       </div>
       <p class="soon">Free on both stores — one tap and you're in 🌱</p>
-      <p class="hero-note"><strong>22,000+</strong> vegan places mapped · <strong>230+</strong> recipes · iPhone &amp; Android</p>
-      <p class="hero-note">Built by one person, tested by real vegans. Live on the App Store &amp; Google Play.</p>
+      <p class="hero-note"><strong>22,000+</strong> vegan places mapped · <strong>120+</strong> cities · <strong>50+</strong> countries · <strong>6</strong> continents</p>
+      <p class="hero-note">Built with love, tested by real vegans. Live on the App Store &amp; Google Play.</p>
     </div>
   </section>
 
