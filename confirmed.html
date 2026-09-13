@@ -61,7 +61,7 @@
     <h1>You're in — welcome to FiFE!</h1>
     <p>Your email is confirmed and your account is ready.</p>
     <p><b>Now open the FiFE app and sign in.</b><br>
-    The map, 212 recipes, UCHE and the community feed are all waiting for you.</p>
+    The map, <span id="rc">200+</span> recipes, UCHE and the community feed are all waiting for you.</p>
     <a class="btn" href="https://fife.earth">Visit fife.earth</a>
   </div>
 
@@ -88,6 +88,19 @@
     document.getElementById("success").className = "hidden";
     document.getElementById("expired").className = "";
   }
+  // Live recipe count straight from the database — never goes stale again.
+  // Public anon key, read-only; falls back to "200+" if anything fails.
+  (function () {
+    var KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFnaWFyamFtdnRiYnFnZWV0YWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDg4NzgsImV4cCI6MjEwMDMyNDg3OH0.wGXbhISdwf4FvjbziJ67r6e5QqPzTEw0a5BddI4FPq0";
+    fetch("https://agiarjamvtbbqgeetalz.supabase.co/rest/v1/library_meals?select=id", {
+      method: "HEAD",
+      headers: { apikey: KEY, Authorization: "Bearer " + KEY, Prefer: "count=exact" }
+    }).then(function (r) {
+      var cr = r.headers.get("content-range") || "";   // e.g. "0-229/230"
+      var total = parseInt((cr.split("/")[1] || ""), 10);
+      if (total > 0) document.getElementById("rc").textContent = total;
+    }).catch(function () { /* keep 200+ fallback */ });
+  })();
 </script>
 </body>
 </html>
